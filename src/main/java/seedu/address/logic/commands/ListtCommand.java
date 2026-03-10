@@ -6,6 +6,9 @@ import seedu.address.model.Model;
 import seedu.address.model.task.MaintenanceTask;
 import seedu.address.model.task.MaintenanceTaskList;
 
+/**
+ * Lists all maintenance tasks in the task list to the user.
+ */
 public class ListtCommand extends Command {
 
     public static final String COMMAND_WORD = "listt";
