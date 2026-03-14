@@ -15,7 +15,8 @@ import seedu.address.model.task.MaintenanceTask;
 /**
  * Adds a maintenance task to the task list.
  *
- * <p>Command format: {@code addt f/FACILITY d/DATE c/CONTRACTOR_INDEX}
+ * <p>
+ * Command format: {@code addt f/FACILITY d/DATE c/CONTRACTOR_INDEX}
  */
 public class AddtCommand extends Command {
 
@@ -32,10 +33,8 @@ public class AddtCommand extends Command {
             + PREFIX_CONTRACTOR_INDEX + "2";
 
     public static final String MESSAGE_SUCCESS = "Task added successfully: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK =
-            "A task for this facility on the same date already exists.";
-    public static final String MESSAGE_INVALID_CONTRACTOR_INDEX =
-            "The contractor index provided is invalid.";
+    public static final String MESSAGE_DUPLICATE_TASK = "A task for this facility on the same date already exists.";
+    public static final String MESSAGE_INVALID_CONTRACTOR_INDEX = "The contractor index provided is invalid.";
 
     private final String facility;
     private final LocalDate date;
@@ -71,7 +70,8 @@ public class AddtCommand extends Command {
     }
 
     /**
-     * Validates that the contractor index refers to an existing contractor in the model.
+     * Validates that the contractor index refers to an existing contractor in the
+     * model.
      *
      * @param model The current model.
      * @throws CommandException If the index is out of bounds.
