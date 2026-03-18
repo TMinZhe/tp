@@ -123,6 +123,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String service} into an {@code Service}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code service} is invalid.
+     */
     public static Service parseService(String service) throws  ParseException {
         requireNonNull(service);
         String trimmedService = service.trim();

@@ -4,6 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 
+/**
+ * Represents a Person's service in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidService(String)}
+ */
 public class Service {
     public static final String MESSAGE_CONSTRAINTS = "Service should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
