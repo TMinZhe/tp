@@ -89,8 +89,8 @@ public class JsonTaskListStorageTest {
      * Reads a task list from a file in the test data folder.
      */
     private java.util.Optional<MaintenanceTaskList> readTaskList(String filePath) throws Exception {
-        Path path = filePath != null ? addToTestDataPathIfNotNull(filePath) : null;
-        return new JsonTaskListStorage(Paths.get(filePath)).readTaskList(path);
+        Path fullPath = addToTestDataPathIfNotNull(filePath);
+        return new JsonTaskListStorage(fullPath).readTaskList(fullPath);
     }
 
     /**
