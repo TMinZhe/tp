@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 import java.util.Set;
 
+import seedu.address.model.person.Service;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.MaintenanceTask;
 import seedu.address.model.task.MaintenanceTaskList;
@@ -16,13 +17,15 @@ public class TypicalMaintenanceTasks {
             "Sports Hall",
             LocalDate.of(2026, 12, 1),
             1,
-            Set.of(new Tag("electrician")));
+            Set.of(new Tag("electrician")),
+            new Service("Electrician"));
 
     public static final MaintenanceTask SWIMMING_POOL = new MaintenanceTask(
             "Swimming Pool",
             LocalDate.of(2026, 12, 15),
             2,
-            Set.of(new Tag("plumber")));
+            Set.of(new Tag("plumber")),
+            new Service("Plumber"));
 
     /** Prevents instantiation. */
     private TypicalMaintenanceTasks() {}

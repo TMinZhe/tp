@@ -71,7 +71,9 @@ public class AddtCommand extends Command {
         Set<Tag> contractorTags = contractor.getTags();
         Service contractorService = contractor.getService();
 
-        MaintenanceTask task = new MaintenanceTask(facility, date, contractorIndex.getOneBased(), contractorTags, contractorService);
+        MaintenanceTask task = new MaintenanceTask(facility, date,
+                contractorIndex.getOneBased(), contractorTags, contractorService);
+
         model.getMaintenanceTaskList().addTask(task);
 
         String tagsString = contractorTags.stream()
