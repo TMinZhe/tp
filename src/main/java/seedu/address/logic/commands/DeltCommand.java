@@ -54,7 +54,8 @@ public class DeltCommand extends Command {
                 .collect(java.util.stream.Collectors.joining(", "));
         String taskDisplay = taskToDelete.getFacility() + " on " + taskToDelete.getDate()
                 + " (Contractor: " + contractor.getName().fullName
-                + " [" + tagsString + "])";
+                + " | Service: " + taskToDelete.getContractorService()
+                + " | Tags: [" + tagsString + "])";
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskDisplay));
     }
 

@@ -38,7 +38,8 @@ public class ListtCommand extends Command {
                     .append(task.getFacility())
                     .append(" on ").append(task.getDate())
                     .append(" (Contractor: ").append(contractorName)
-                    .append(" [").append(tagsString).append("])\n");
+                    .append(" | Service: ").append(task.getContractorService())
+                    .append(" | Tags: [").append(tagsString).append("])\n");
         }
         return new CommandResult(sb.toString());
     }
