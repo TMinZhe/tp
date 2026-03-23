@@ -32,6 +32,12 @@ public class MaintenanceTask {
      * @param tags            The set of tags associated with the task.
      */
     public MaintenanceTask(String facility, LocalDate date, int contractorIndex, Set<Tag> tags, Service service) {
+        assert facility != null : "Facility should not be null";
+        assert !facility.isBlank() : "Facility should not be blank";
+        assert date != null : "Date should not be null";
+        assert contractorIndex > 0 : "Contractor index should be positive";
+        assert tags != null : "Tags should not be null";
+        assert service != null : "Service should not be null";
         this.facility = facility;
         this.date = date;
         this.contractorIndex = contractorIndex;

@@ -14,7 +14,13 @@ public class MaintenanceTaskList {
         tasks.add(task);
     }
 
+    /**
+     * Removes the task at the specified index from the list.
+     * @param index The 0-based index of the task to remove.
+     */
     public void removeTask(int index) {
+        assert index >= 0 : "Index should not be negative";
+        assert index < tasks.size() : "Index should be within list size";
         tasks.remove(index);
     }
 

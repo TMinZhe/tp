@@ -18,6 +18,7 @@ public class ListtCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        assert model != null : "Model should not be null";
         MaintenanceTaskList taskList = model.getMaintenanceTaskList();
         if (taskList.isEmpty()) {
             return new CommandResult(MESSAGE_NO_TASKS);
@@ -27,6 +28,8 @@ public class ListtCommand extends Command {
         List<MaintenanceTask> tasks = taskList.getTasks();
         for (int i = 0; i < tasks.size(); i++) {
             MaintenanceTask task = tasks.get(i);
+            assert task.getContractorIndex() - 1 < model.getFilteredPersonList().size()
+                    : "Contractor index should be within person list size";
             Person contractor = model.getFilteredPersonList()
                     .get(task.getContractorIndex() - 1);
             String contractorName = contractor.getName().fullName;
