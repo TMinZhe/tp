@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Service;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.MaintenanceTask;
 
@@ -25,6 +26,7 @@ class JsonAdaptedMaintenanceTask {
     private final String date;
     private final int contractorIndex;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String service;
 
     /**
      * Constructs a {@code JsonAdaptedMaintenanceTask} with the given task details.
@@ -34,10 +36,12 @@ class JsonAdaptedMaintenanceTask {
             @JsonProperty("facility") String facility,
             @JsonProperty("date") String date,
             @JsonProperty("contractorIndex") int contractorIndex,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("service") String service) {
         this.facility = facility;
         this.date = date;
         this.contractorIndex = contractorIndex;
+        this.service = service;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -52,6 +56,7 @@ class JsonAdaptedMaintenanceTask {
         this.facility = source.getFacility();
         this.date = source.getDate().toString();
         this.contractorIndex = source.getContractorIndex();
+        this.service = source.getContractorService().toString();
         this.tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -66,7 +71,12 @@ class JsonAdaptedMaintenanceTask {
         final String modelFacility = parseFacility();
         final LocalDate modelDate = parseDate();
         final Set<Tag> modelTags = parseTags();
-        return new MaintenanceTask(modelFacility, modelDate, contractorIndex, modelTags);
+        if (service == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, "service"));
+        }
+        final Service modelService = new Service(service);
+        return new MaintenanceTask(modelFacility, modelDate, contractorIndex, modelTags, modelService);
     }
 
     /**

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.Service;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,6 +20,8 @@ public class MaintenanceTask {
     private final LocalDate date;
     private final int contractorIndex;
     private final Set<Tag> tags = new HashSet<>();
+    private final Service contractorService;
+
 
     /**
      * Constructs a {@code MaintenanceTask}.
@@ -28,11 +31,26 @@ public class MaintenanceTask {
      * @param contractorIndex The 1-based index of the assigned contractor.
      * @param tags            The set of tags associated with the task.
      */
-    public MaintenanceTask(String facility, LocalDate date, int contractorIndex, Set<Tag> tags) {
+    public MaintenanceTask(String facility, LocalDate date, int contractorIndex, Set<Tag> tags, Service service) {
+        assert facility != null : "Facility should not be null";
+        assert !facility.isBlank() : "Facility should not be blank";
+        assert date != null : "Date should not be null";
+        assert contractorIndex > 0 : "Contractor index should be positive";
+        assert tags != null : "Tags should not be null";
+        assert service != null : "Service should not be null";
         this.facility = facility;
         this.date = date;
         this.contractorIndex = contractorIndex;
         this.tags.addAll(tags);
+        this.contractorService = service;
+    }
+
+    /**
+     * Returns the contractor's service for this maintenance task.
+     * @return The contractor's service.
+     */
+    public Service getContractorService() {
+        return this.contractorService;
     }
 
     /** Returns the facility name. */

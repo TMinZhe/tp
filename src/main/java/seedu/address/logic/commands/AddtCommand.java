@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Service;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.MaintenanceTask;
 
@@ -68,8 +69,11 @@ public class AddtCommand extends Command {
 
         Person contractor = model.getFilteredPersonList().get(contractorIndex.getZeroBased());
         Set<Tag> contractorTags = contractor.getTags();
+        Service contractorService = contractor.getService();
 
-        MaintenanceTask task = new MaintenanceTask(facility, date, contractorIndex.getOneBased(), contractorTags);
+        MaintenanceTask task = new MaintenanceTask(facility, date,
+                contractorIndex.getOneBased(), contractorTags, contractorService);
+
         model.getMaintenanceTaskList().addTask(task);
 
         String tagsString = contractorTags.stream()
@@ -77,7 +81,8 @@ public class AddtCommand extends Command {
                 .collect(java.util.stream.Collectors.joining(", "));
         String taskDisplay = facility + " on " + date
                 + " (Contractor: " + contractor.getName().fullName
-                + " [" + tagsString + "])";
+                + " | Service: " + contractorService
+                + " | Tags: [" + tagsString + "])";
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskDisplay));
     }
 
