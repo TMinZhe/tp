@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Model;
 import seedu.address.model.task.FacilityContainsKeywords;
 import seedu.address.model.task.MaintenanceTask;
@@ -35,12 +36,9 @@ public class HistoryCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        List<MaintenanceTask> allTasks = model.getMaintenanceTaskList()
-                .asUnmodifiableObservableList();
-
-        List<MaintenanceTask> matchingTasks = allTasks.stream()
-                .filter(predicate)
-                .collect(Collectors.toList());
+        // Update the model's filtered list so UI syncs and test assertions pass
+        model.updateFilteredMaintenanceTaskList(predicate);
+        List<MaintenanceTask> matchingTasks = model.getFilteredMaintenanceTaskList();
 
         if (matchingTasks.isEmpty()) {
             return new CommandResult(String.format(MESSAGE_NO_TASKS, facilityName));
@@ -51,5 +49,26 @@ public class HistoryCommand extends Command {
                 .collect(Collectors.joining("\n"));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, facilityName, taskListString));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof HistoryCommand)) {
+            return false;
+        }
+
+        HistoryCommand otherCommand = (HistoryCommand) other;
+        return facilityName.equals(otherCommand.facilityName);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("facilityName", facilityName)
+                .toString();
     }
 }

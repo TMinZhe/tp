@@ -1,7 +1,6 @@
 package seedu.address.model.task;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -12,7 +11,8 @@ import javafx.collections.ObservableList;
  * Represents a list of maintenance tasks.
  */
 public class MaintenanceTaskList {
-    private final ArrayList<MaintenanceTask> tasks = new ArrayList<>();
+    private final ObservableList<MaintenanceTask> tasks = FXCollections.observableArrayList();
+    private final ObservableList<MaintenanceTask> unmodifiableTasks = FXCollections.unmodifiableObservableList(tasks);
 
     public void addTask(MaintenanceTask task) {
         tasks.add(task);
@@ -58,7 +58,7 @@ public class MaintenanceTaskList {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<MaintenanceTask> asUnmodifiableObservableList() {
-        return FXCollections.unmodifiableObservableList(FXCollections.observableList(tasks));
+        return unmodifiableTasks;
     }
 
     /**

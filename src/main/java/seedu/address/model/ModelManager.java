@@ -38,8 +38,11 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        // FIX: Bind to `this.taskList` instead of
+        // `this.addressBook.getMaintenanceTaskList()`
         this.filteredMaintenanceTasks = new FilteredList<>(
-                this.addressBook.getMaintenanceTaskList().asUnmodifiableObservableList());
+                this.taskList.asUnmodifiableObservableList());
     }
 
     public ModelManager() {
@@ -124,14 +127,12 @@ public class ModelManager implements Model {
         return taskList;
     }
 
-    // =========== Filtered Person List Accessors
+    // =========== Filtered List Accessors
     // =============================================================
     @Override
     public void sortTasksByDate() {
         taskList.sortTasksByDate();
     }
-
-    //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the
@@ -176,5 +177,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }
