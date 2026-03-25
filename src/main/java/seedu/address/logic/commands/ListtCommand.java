@@ -38,6 +38,7 @@ public class ListtCommand extends Command {
                     .collect(java.util.stream.Collectors.joining(", "));
 
             sb.append(i + 1).append(". ")
+                    .append(task.isCompleted() ? "[DONE] " : "[PENDING] ")
                     .append(task.getFacility())
                     .append(" on ").append(task.getDate())
                     .append(" (Contractor: ").append(contractorName)

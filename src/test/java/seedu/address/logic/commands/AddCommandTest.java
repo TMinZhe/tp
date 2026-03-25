@@ -174,6 +174,11 @@ public class AddCommandTest {
         public MaintenanceTaskList getMaintenanceTaskList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortTasksByDate() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

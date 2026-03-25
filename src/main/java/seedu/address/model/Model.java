@@ -93,6 +93,10 @@ public interface Model {
     ObservableList<MaintenanceTask> getFilteredMaintenanceTaskList();
 
     void updateFilteredMaintenanceTaskList(Predicate<MaintenanceTask> predicate);
+    /**
+     * Sorts the maintainence tasks by date.
+     */
+    void sortTasksByDate();
 
     MaintenanceTaskList getMaintenanceTaskList();
 }

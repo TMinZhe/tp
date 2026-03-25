@@ -21,6 +21,7 @@ public class MaintenanceTask {
     private final int contractorIndex;
     private final Set<Tag> tags = new HashSet<>();
     private final Service contractorService;
+    private boolean isCompleted;
 
 
     /**
@@ -43,6 +44,7 @@ public class MaintenanceTask {
         this.contractorIndex = contractorIndex;
         this.tags.addAll(tags);
         this.contractorService = service;
+        this.isCompleted = false;
     }
 
     /**
@@ -70,6 +72,18 @@ public class MaintenanceTask {
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
+    /**
+     * Marks this maintenance task as completed. Once marked, it cannot be undone.
+     */
+    public void markAsCompleted() {
+        assert !isCompleted : "Task should not already be completed";
+        this.isCompleted = true;
     }
 
     @Override

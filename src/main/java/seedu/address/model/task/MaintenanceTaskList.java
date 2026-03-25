@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -58,5 +59,14 @@ public class MaintenanceTaskList {
      */
     public ObservableList<MaintenanceTask> asUnmodifiableObservableList() {
         return FXCollections.unmodifiableObservableList(FXCollections.observableList(tasks));
+    }
+  
+     * Sorts tasks in-place by date (ascending). Ties are broken deterministically to ensure a stable order.
+     */
+    public void sortTasksByDate() {
+        tasks.sort(Comparator
+                .comparing(MaintenanceTask::getDate)
+                .thenComparing(MaintenanceTask::getFacility, String.CASE_INSENSITIVE_ORDER)
+                .thenComparingInt(MaintenanceTask::getContractorIndex));
     }
 }
