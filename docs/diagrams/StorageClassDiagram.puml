@@ -53,5 +53,4 @@ JsonTaskListStorage .up.|> TaskListStorage
 JsonTaskListStorage ..> JsonSerializableTaskList
 JsonSerializableTaskList --> "*" JsonAdaptedMaintenanceTask
 JsonAdaptedMaintenanceTask --> "*" JsonAdaptedTag
-
 @enduml
