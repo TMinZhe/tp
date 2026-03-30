@@ -2,6 +2,9 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -34,6 +37,12 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    // List to store command history
+    private final ObservableList<String> commandHistory = FXCollections.observableArrayList();
+
+    @FXML
+    private StackPane commandHistoryPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -121,6 +130,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        ListView<String> commandHistoryView = new ListView<>();
+        commandHistoryView.setItems(commandHistory);
+        commandHistoryPlaceholder.getChildren().add(commandHistoryView);
     }
 
     /**
@@ -177,6 +190,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            commandHistory.add(0, commandText);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -190,6 +204,7 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            commandHistory.add(0, commandText + " [ERROR]");
             throw e;
         }
     }

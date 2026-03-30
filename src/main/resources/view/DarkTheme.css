@@ -1,6 +1,6 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #0d0d0d;
+    background-color: #0d0d0d;
 }
 
 .label {
@@ -121,15 +121,15 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 14px;
+    -fx-text-fill: #00ff00;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 12px;
+    -fx-text-fill: #aaaaaa;
 }
 
 .stack-pane {
@@ -148,9 +148,9 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 11pt;
+    -fx-text-fill: #00ff00;
 }
 
 .result-display .label {
@@ -318,14 +318,15 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: #0d0d0d;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
+    -fx-border-color: #00ff00;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-border-insets: 0;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 12pt;
+    -fx-text-fill: #00ff00;
+    -fx-prompt-text-fill: #555555;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -349,4 +350,30 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#commandHistoryPlaceholder {
+    -fx-background-color: #0d0d0d;
+}
+
+.list-view {
+    -fx-background-color: #0d0d0d;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.list-cell {
+    -fx-background-color: #0d0d0d;
+    -fx-text-fill: #aaaaaa;
+    -fx-font-family: "Courier New";
+    -fx-font-size: 11px;
+    -fx-padding: 4px 8px;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: #0d0d0d;
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: #111111;
 }
