@@ -180,7 +180,33 @@ Format: `delt INDEX`
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed maintenance tasklist.
 
+### Marking a task as complete : `donet`
 
+Marks the specified maintenance task as completed.
+
+Format: `donet INDEX`
+
+* Marks the task at the specified `INDEX` as done.
+* The index refers to the index number shown in the displayed maintenance tasklist.
+* The index **must be a positive integer** 1, 2, 3, …​
+* A task that has already been marked as done cannot be marked again.
+
+Examples:
+* `listt` followed by `donet 1` marks the 1st task in the task list as completed.
+
+### Generating a monthly report : `report`
+
+Generates a summary report of all completed maintenance tasks for the specified month.
+
+Format: `report m/YEAR-MONTH`
+
+* `YEAR-MONTH` must be in the format `YYYY-MM` e.g. `2026-12`.
+* Only completed tasks (marked via `donet`) are included in the report.
+* Tasks are grouped by contractor, showing their name, service, tags and task count.
+
+Examples:
+* `report m/2026-12` generates a report for December 2026.
+* `report m/2026-06` generates a report for June 2026.
 
 ### General features
 
@@ -256,3 +282,5 @@ Action     | Format, Examples
 **List**   | `listc`
 **Sort**   | `sortt`
 **Help**   | `help`
+**Done**   | `donet INDEX`<br> e.g., `donet 1`
+**Report** | `report m/YEAR-MONTH`<br> e.g., `report m/2026-12`

@@ -18,7 +18,7 @@
 }
 
 /* ============================================================================
- * MAIN CONTAINERS (The Solid Blue Body)
+ * MAIN CONTAINERS: The Solid Blue Body
  * ============================================================================ */
 .pane-with-border {
      -fx-background-color: #0a192f;
@@ -32,23 +32,29 @@
 
 .split-pane .split-pane-divider {
     -fx-background-color: #0a192f;
+    -fx-padding: 0 1 0 1;
 }
 
 /* ============================================================================
- * OUTPUT WINDOW: The Black "Screen"
+ * OUTPUT WINDOW: Seamless Black TextFlow
+ * This fixes the "white window" issue caused by the ScrollPane.
  * ============================================================================ */
-#resultDisplayPlaceholder .result-display {
-    -fx-control-inner-background: #000000;
+.result-display-scroll {
     -fx-background-color: #000000;
-    -fx-text-fill: #ffffff; /* Main text is White */
-    -fx-font-family: "Consolas", "Courier New";
-    -fx-font-size: 14px;
-    -fx-padding: 15;
+    -fx-background: #000000; /* Sets the inner 'canvas' to black */
     -fx-border-width: 0;
+    -fx-padding: 0;
 }
 
-.result-display .content, .result-display .viewport {
-    -fx-background-color: #000000 !important;
+/* The viewport is the actual visible area of the ScrollPane */
+.result-display-scroll .viewport {
+    -fx-background-color: #000000;
+}
+
+/* Styling the TextFlow container inside the scroll */
+.result-display-flow {
+    -fx-background-color: #000000;
+    -fx-padding: 15;
 }
 
 /* ============================================================================
@@ -79,7 +85,7 @@
 }
 
 /* ============================================================================
- * COMMAND BAR: Sharp Neon Green Input with Green "$" Prompt
+ * COMMAND BAR: Sharp Neon Green Input
  * ============================================================================ */
 #commandTextField {
     -fx-background-color: #000000;
@@ -87,13 +93,8 @@
     -fx-font-family: "Consolas", "Monospaced";
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #00ff00; /* Typed text is Neon Green */
+    -fx-text-fill: #00ff00; /* Neon Green typing */
     -fx-padding: 12;
-}
-
-/* This makes the placeholder "$" look green even before you type */
-#commandTextField .text {
-    -fx-fill: #00ff00;
 }
 
 #commandTextField:focused {
@@ -102,7 +103,7 @@
 }
 
 /* ============================================================================
- * EXECUTE BUTTON: Vibrant Neon
+ * EXECUTE BUTTON: Solid Neon Green
  * ============================================================================ */
 .execute-button {
     -fx-background-color: #00ff00;
@@ -118,7 +119,7 @@
 }
 
 /* ============================================================================
- * CLEANUP & SCROLLBAR
+ * STATUS BAR & SCROLLBARS
  * ============================================================================ */
 .status-bar {
     -fx-background-color: #0a192f;
@@ -130,5 +131,10 @@
 }
 
 .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+/* Hides the 'corners' where horizontal and vertical scrollbars meet */
+.scroll-pane .corner {
     -fx-background-color: transparent;
 }
