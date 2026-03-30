@@ -2,13 +2,17 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+/**
+ * A ui for the result display that is displayed at the bottom of the application.
+ * It contains the command typed and the result of the command.
+ * It also has a scroll pane to allow the user to scroll through the command history.
+ */
 public class ResultDisplay extends UiPart<Region> {
 
     private static final String FXML = "ResultDisplay.fxml";

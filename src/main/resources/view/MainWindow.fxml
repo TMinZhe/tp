@@ -52,14 +52,12 @@
             </VBox>
 
             <VBox styleClass="pane-with-border" minWidth="250" prefWidth="300">
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-              <Label text="Command History" styleClass="label-bright">
-                <VBox.margin>
-                  <Insets bottom="10" />
-                </VBox.margin>
-              </Label>
+              <StackPane styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <padding>
+                  <Insets top="8" right="10" bottom="8" left="10" />
+                </padding>
+                <Label text="Command History" styleClass="label-bright" />
+              </StackPane>
               <StackPane fx:id="commandHistoryPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
 
