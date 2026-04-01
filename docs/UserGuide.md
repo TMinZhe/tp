@@ -103,9 +103,9 @@ Format: `listc`
 
 ### Locating contractors by name or service : `findc`
 
-Finds contractors whose names or service contain any of the given keywords.
+Finds contractors whose names (n/) or service (s/) contain any of the given keywords.
 
-Format: `findc KEYWORD [MORE_KEYWORDS] or findc s/KEYWORD [MORE_KEYWORDS]`
+Format: `findc n/KEYWORD [MORE_KEYWORDS] or findc s/KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -114,8 +114,8 @@ Format: `findc KEYWORD [MORE_KEYWORDS] or findc s/KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `findc John` returns `john` and `John Doe`
-* `findc alex david` returns `Alex Yeoh`, `David Li`<br>
+* `findc n/John` returns `john` and `John Doe`
+* `findc n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a contractor : `delc`
@@ -130,7 +130,7 @@ Format: `delc INDEX`
 
 Examples:
 * `listc` followed by `delc 2` deletes the 2nd contractor in the address book.
-* `findc Betsy` followed by `delc 1` deletes the 1st contractor in the results of the `findc` command.
+* `findc n/Betsy` followed by `delc 1` deletes the 1st contractor in the results of the `findc` command.
 
 ### Editing a contractor : `editc`
 
@@ -292,7 +292,7 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delc INDEX`<br> e.g., `delete 3`
 **Edit**   | `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SERVICE] [t/TAG]…​`
-**Find**   | `findc KEYWORD [s/SERVICE] [MORE_KEYWORDS]`<br> e.g., `findc James Jake`
+**Find**   | `findc n/KEYWORD [MORE_KEYWORDS]` or `findc s/KEYWORD [MORE_KEYWORDS]`<br> e.g., `findc n/James Jake`
 **List**   | `listc`
 **Sort**   | `sortt`
 **Help**   | `help`
