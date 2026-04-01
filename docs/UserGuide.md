@@ -150,13 +150,28 @@ Example:
 
 ### Adding a task : `addt`
 
-Adds a maintenance task to the address book.
+Adds a maintenance task and assigns it to a contractor in the address book.
 
 Format: `addt f/FACILITY d/DATE (YYYY-MM-DD) c/CONTRACTOR_INDEX`
 
+* `FACILITY` must be between 1 and 50 characters.
+* `DATE` must be in `YYYY-MM-DD` format and must not be in the past.
+* `CONTRACTOR_INDEX` refers to the index number shown in the **currently displayed contractor list**.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+<box type="warning" seamless>
+
+**Caution:** Always run `listc` before using `addt` to ensure the contractor index refers to the full list. If you run `findc` first and then use `addt`, the index will be based on the filtered list which may assign the task to the wrong contractor.
+</box>
+
+<box type="tip" seamless>
+
+**Tip:** A task cannot be added if another task for the same facility on the same date already exists.
+</box>
+
 Examples:
-* `addt f/Sports Hall d/2026-12-01 c/2`
-* `addt f/Function Room d/2026-06-20 c/4`
+* `listc` followed by `addt f/Sports Hall d/2026-12-01 c/2` adds a task for Sports Hall on 1 Dec 2026 assigned to the 2nd contractor in the full list.
+* `listc` followed by `addt f/Function Room d/2026-06-20 c/4` adds a task for Function Room on 20 Jun 2026 assigned to the 4th contractor.
 
 ### Listing all tasks : `listt`
 
