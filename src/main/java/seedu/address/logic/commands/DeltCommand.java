@@ -45,10 +45,15 @@ public class DeltCommand extends Command {
         }
 
         MaintenanceTask taskToDelete = lastShownList.get(targetIndex.getZeroBased());
+        List<Person> allPersons = model.getAddressBook().getPersonList();
+        int contractorIdx = taskToDelete.getContractorIndex() - 1;
+        if (contractorIdx < 0 || contractorIdx >= allPersons.size()) {
+            throw new CommandException("Contractor linked to this task no longer exists.");
+        }
+        Person contractor = allPersons.get(contractorIdx);
+
         taskList.removeTask(targetIndex.getZeroBased());
 
-        Person contractor = model.getFilteredPersonList()
-                .get(taskToDelete.getContractorIndex() - 1);
         String tagsString = taskToDelete.getTags().stream()
                 .map(tag -> tag.tagName)
                 .collect(java.util.stream.Collectors.joining(", "));
