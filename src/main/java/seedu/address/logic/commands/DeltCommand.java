@@ -51,29 +51,21 @@ public class DeltCommand extends Command {
                     "Cannot delete a completed task. Completed tasks are kept for reporting.");
         }
 
+        List<Person> allPersons = model.getAddressBook().getPersonList();
+        int contractorIdx = taskToDelete.getContractorIndex() - 1;
+        if (contractorIdx < 0 || contractorIdx >= allPersons.size()) {
+            throw new CommandException("Contractor linked to this task no longer exists.");
+        }
+        Person contractor = allPersons.get(contractorIdx);
+
         taskList.removeTask(targetIndex.getZeroBased());
 
-        int contractorIdx = taskToDelete.getContractorIndex() - 1;
-        List<Person> personList = model.getFilteredPersonList();
-
-        String contractorName;
-        String service;
         String tagsString = taskToDelete.getTags().stream()
                 .map(tag -> tag.tagName)
                 .collect(java.util.stream.Collectors.joining(", "));
-
-        if (contractorIdx < personList.size()) {
-            Person contractor = personList.get(contractorIdx);
-            contractorName = contractor.getName().fullName;
-            service = contractor.getService().toString();
-        } else {
-            contractorName = "Unknown (deleted)";
-            service = "Unknown";
-        }
-
         String taskDisplay = taskToDelete.getFacility() + " on " + taskToDelete.getDate()
-                + " (Contractor: " + contractorName
-                + " | Service: " + service
+                + " (Contractor: " + contractor.getName().fullName
+                + " | Service: " + taskToDelete.getContractorService()
                 + " | Tags: [" + tagsString + "])";
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskDisplay));
     }
