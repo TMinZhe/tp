@@ -18,6 +18,11 @@ public class MaintenanceTaskList {
         tasks.add(task);
     }
 
+    /** Removes all tasks from the list. */
+    public void clearTasks() {
+        tasks.clear();
+    }
+
     /**
      * Removes the task at the specified index from the list.
      * @param index The 0-based index of the task to remove.
