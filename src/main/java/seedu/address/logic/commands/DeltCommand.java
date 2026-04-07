@@ -11,7 +11,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.MaintenanceTask;
-import seedu.address.model.task.MaintenanceTaskList;
 
 /**
  * Delete maintenance task
@@ -37,8 +36,7 @@ public class DeltCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        MaintenanceTaskList taskList = model.getMaintenanceTaskList();
-        List<MaintenanceTask> lastShownList = taskList.getTasks();
+        List<MaintenanceTask> lastShownList = model.getFilteredMaintenanceTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
@@ -58,7 +56,7 @@ public class DeltCommand extends Command {
         }
         Person contractor = allPersons.get(contractorIdx);
 
-        taskList.removeTask(targetIndex.getZeroBased());
+        model.getMaintenanceTaskList().removeTask(taskToDelete);
 
         String tagsString = taskToDelete.getTags().stream()
                 .map(tag -> tag.tagName)

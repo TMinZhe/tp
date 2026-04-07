@@ -28,6 +28,14 @@ public class MaintenanceTaskList {
         tasks.remove(index);
     }
 
+    /**
+     * Removes the given task from the list by reference.
+     * @param task The task to remove.
+     */
+    public void removeTask(MaintenanceTask task) {
+        tasks.remove(task);
+    }
+
     public List<MaintenanceTask> getTasks() {
         return tasks;
     }

@@ -47,7 +47,7 @@ public class DonetCommand extends Command {
         requireNonNull(model);
         assert model != null : "Model should not be null";
 
-        List<MaintenanceTask> taskList = model.getMaintenanceTaskList().getTasks();
+        List<MaintenanceTask> taskList = model.getFilteredMaintenanceTaskList();
 
         if (targetIndex.getZeroBased() >= taskList.size()) {
             logger.warning("Invalid task index: " + targetIndex.getOneBased());
