@@ -15,7 +15,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL =
+            "https://ay2526s2-cs2103-f13-3.github.io/tp/UserGuide.html#command-summary";
     public static final String HELP_MESSAGE = """
             Quick start:
             1) Add and list contractors, then add tasks tied to contractor indexes.
@@ -32,9 +33,10 @@ public class HelpWindow extends UiPart<Stage> {
             Task commands:
             - addt f/FACILITY d/YYYY-MM-DD c/CONTRACTOR_INDEX
             - listt
-            - sortt
-            - donet INDEX
+            - editt INDEX [f/FACILITY] [d/YYYY-MM-DD] [c/CONTRACTOR_INDEX]
             - delt INDEX
+            - donet INDEX
+            - sortt
             - history f/FACILITY
             - report m/YYYY-MM
 

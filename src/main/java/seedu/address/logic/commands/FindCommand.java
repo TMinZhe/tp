@@ -24,7 +24,7 @@ public class FindCommand extends Command {
             + "Examples: " + COMMAND_WORD + " n/alex david"
             + ", " + COMMAND_WORD + " s/Electrical";
     public static final String MESSAGE_NO_PERSONS_FOUND = "No matching contractors found.";
-    public static final String MESSAGE_SUCCESS = "Found %d matching contractors.";
+    public static final String MESSAGE_SUCCESS = "Found %d matching contractor(s).";
 
     private final Predicate<Person> predicate;
 
