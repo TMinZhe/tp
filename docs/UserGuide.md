@@ -305,16 +305,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `addc n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SERVICE [t/TAG]…​` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 s/Plumbing t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delc INDEX`<br> e.g., `delete 3`
-**Edit**   | `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SERVICE] [t/TAG]…​`
-**Find**   | `findc n/KEYWORD [MORE_KEYWORDS]` or `findc s/KEYWORD [MORE_KEYWORDS]`<br> e.g., `findc n/James Jake`
-**List**   | `listc`
-**Sort**   | `sortt`
-**History**| `history f/FACILITY_NAME`<br> e.g., `history f/Sports Hall`
-**Help**   | `help`
-**Done**   | `donet INDEX`<br> e.g., `donet 1`
-**Report** | `report m/YEAR-MONTH`<br> e.g., `report m/2026-12`
+Action          | Format, Examples
+----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add**         | `addc n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SERVICE [t/TAG]…​` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 s/Plumbing t/friend t/colleague`
+**Clear**       | `clear confirm`
+**Delete**      | `delc INDEX`<br> e.g., `delc 3`
+**Edit**        | `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SERVICE] [t/TAG]…​`
+**Find**        | `findc n/KEYWORD [MORE_KEYWORDS]` or `findc s/KEYWORD [MORE_KEYWORDS]`<br> e.g., `findc n/James Jake`
+**List**        | `listc`
+**Add Task**    | `addt f/FACILITY d/DATE c/CONTRACTOR_INDEX`<br> e.g., `addt f/Sports Hall d/2026-12-01 c/2`
+**Delete Task** | `delt INDEX`<br> e.g., `delt 1`
+**Done Task**   | `donet INDEX`<br> e.g., `donet 1`
+**List Tasks**  | `listt`
+**Sort Tasks**  | `sortt`
+**History**     | `history f/FACILITY_NAME`<br> e.g., `history f/Sports Hall`
+**Report**      | `report m/YEAR-MONTH`<br> e.g., `report m/2026-12`
+**Help**        | `help`
