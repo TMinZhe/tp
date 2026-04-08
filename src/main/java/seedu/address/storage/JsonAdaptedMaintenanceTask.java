@@ -22,10 +22,12 @@ import seedu.address.model.task.MaintenanceTask;
 class JsonAdaptedMaintenanceTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "MaintenanceTask's %s field is missing!";
+    public static final String INVALID_FACILITY_MESSAGE = "Facility name must not be blank and must not exceed "
+            + MaintenanceTask.MAX_FACILITY_LENGTH + " characters.";
 
     private final String facility;
     private final String date;
-    //private final int contractorIndex;
+    // private final int contractorIndex;
     private final String contractorName;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String service;
@@ -78,7 +80,8 @@ class JsonAdaptedMaintenanceTask {
     }
 
     /**
-     * Converts this Jackson-friendly adapted task into the model's {@code MaintenanceTask}.
+     * Converts this Jackson-friendly adapted task into the model's
+     * {@code MaintenanceTask}.
      *
      * @throws IllegalValueException if any field is missing or invalid.
      */
@@ -86,6 +89,7 @@ class JsonAdaptedMaintenanceTask {
         final String modelFacility = parseFacility();
         final LocalDate modelDate = parseDate();
         final Set<Tag> modelTags = parseTags();
+
         if (contractorName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "contractorName"));
         }
@@ -93,11 +97,16 @@ class JsonAdaptedMaintenanceTask {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelContractorName = new Name(contractorName);
+
         if (service == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "service"));
         }
+        if (!Service.isValidService(service)) {
+            throw new IllegalValueException(Service.MESSAGE_CONSTRAINTS);
+        }
         final Service modelService = new Service(service);
+
         MaintenanceTask task = new MaintenanceTask(modelFacility, modelDate,
                 modelContractorName, modelTags, modelService);
         if (isCompleted) {
@@ -109,14 +118,21 @@ class JsonAdaptedMaintenanceTask {
     /**
      * Parses and validates the facility field.
      *
-     * @throws IllegalValueException if the facility is null or blank.
+     * @throws IllegalValueException if the facility is null, blank, or exceeds max
+     *                               length.
      */
     private String parseFacility() throws IllegalValueException {
         if (facility == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "facility"));
         }
-        return facility;
+
+        String trimmedFacility = facility.trim();
+        if (trimmedFacility.isEmpty() || trimmedFacility.length() > MaintenanceTask.MAX_FACILITY_LENGTH) {
+            throw new IllegalValueException(INVALID_FACILITY_MESSAGE);
+        }
+
+        return trimmedFacility;
     }
 
     /**
@@ -139,11 +155,15 @@ class JsonAdaptedMaintenanceTask {
     /**
      * Converts each {@code JsonAdaptedTag} in the list into a model {@code Tag}.
      *
-     * @throws IllegalValueException if any tag name is invalid.
+     * @throws IllegalValueException if any tag name is invalid or if a null tag
+     *                               exists.
      */
     private Set<Tag> parseTags() throws IllegalValueException {
         Set<Tag> modelTags = new HashSet<>();
         for (JsonAdaptedTag tag : tags) {
+            if (tag == null) {
+                throw new IllegalValueException("Tags list should not contain null elements.");
+            }
             modelTags.add(tag.toModelType());
         }
         return modelTags;
