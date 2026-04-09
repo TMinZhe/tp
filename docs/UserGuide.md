@@ -9,13 +9,7 @@
 EstateContacts is a **desktop address book app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EstateContacts can get your contact management tasks done faster than traditional GUI apps.
 
 ---
-## Table of Contents
-
-- [Quick start](#quick-start)
-- [Features](#features)
-- [FAQ](#faq)
-- [Known issues](#known-issues)
-- [Command summary](#command-summary)
+Table of Contents
 
 <!-- * Table of Contents -->
 <page-nav-print />
