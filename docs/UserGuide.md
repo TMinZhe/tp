@@ -44,7 +44,7 @@ EstateContacts is a **desktop address book app for managing contacts, optimized 
 
    * `delc 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all contacts and tasks.
 
    * `exit` : Exits the app.
 
@@ -84,7 +84,7 @@ EstateContacts is a **desktop address book app for managing contacts, optimized 
 
 Adds a contractor to EstateContacts.
 
-Format: `addc n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SERVICE [t/TAG]…​`
+Format: `addc n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SERVICE [t/TAG]…`
 
 <box type="tip" seamless>
 
@@ -113,6 +113,11 @@ Format: `findc n/KEYWORD [MORE_KEYWORDS] or findc s/KEYWORD [MORE_KEYWORDS]`
 * Contractors matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+Caution:
+* `findc` returns the filtered list, so it will affect other commands that uses contractor index.
+* If you used `findc` as the most recent command, use `findc` contractor index instead of `listc` contractor index.
+ 
+
 Examples:
 * `findc n/John` returns `john` and `John Doe`
 * `findc n/amy bob` returns `Amy Lee`, `Bob Tan`<br>
@@ -126,11 +131,11 @@ Format: `delc INDEX`
 
 * Deletes the contractor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contractor list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3
 
 <box type="warning" seamless>
 
-**Note:** Deleting a contractor will **not** delete their associated maintenance tasks. Any tasks previously assigned to the deleted contractor will still appear in the task list, but the contractor will be shown as `Unknown (deleted)`. It is recommended to delete associated tasks via `delt` before deleting a contractor.
+**Caution:** Deleting a contractor will **not** delete their associated maintenance tasks. Any tasks previously assigned to the deleted contractor will still appear in the task list, but the contractor will be shown as `Unknown (deleted)`. It is recommended to delete associated tasks via `delt` before deleting a contractor.
 
 </box>
 
@@ -146,6 +151,8 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SERVICE] [t/TAG
 
 * Existing values will be overwritten by the input values.
 * At least one field must be provided.
+* The index refers to the index number shown in the displayed contractor list.
+* The index **must be a positive integer** 1, 2, 3
 
 Example:
 * `editc 1 p/91234567 e/johndoe@example.com`
@@ -163,7 +170,7 @@ Format: `addt f/FACILITY d/DATE (YYYY-MM-DD) c/CONTRACTOR_INDEX`
 * `FACILITY` must be between 1 and 50 characters.
 * `DATE` must be in `YYYY-MM-DD` format and must not be in the past.
 * `CONTRACTOR_INDEX` refers to the index number shown in the **currently displayed contractor list**.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3
 
 <box type="warning" seamless>
 
@@ -185,11 +192,21 @@ Shows a list of all tasks in EstateContacts.
 
 Format: `listt`
 
-### Sorting tasks by date : `sortt`
+### Editing a task : `editt`
 
-Sorts the maintenance task list by date (ascending).
+Edits the specified task from EstateContacts.
 
-Format: `sortt`
+Format: `editt INDEX [f/FACILITY] [d/DATE (YYYY-MM-DD)] [c/CONTRACTOR_INDEX]`
+
+* Existing values will be overwritten by the input values.
+* At least one field must be provided.
+* The index refers to the index number shown in the displayed maintenance tasklist.
+* The index **must be a positive integer** 1, 2, 3
+
+Caution: Refer to `addt` caution section.
+
+Examples:
+* `editt 1 f/FunctionRoom d/2026-12-15`
 
 ### Deleting a task : `delt`
 
@@ -200,6 +217,16 @@ Format: `delt INDEX`
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed maintenance tasklist.
 * Completed tasks (marked via `donet`) **cannot** be deleted, as they are kept for monthly reporting purposes.
+
+Examples:
+* delt 1
+
+### Sorting tasks by date : `sortt`
+
+Sorts the maintenance task list by date (ascending).
+
+Format: `sortt`
+
 
 ### Marking a task as complete : `donet`
 
@@ -256,7 +283,7 @@ Format: `help`
 
 ### Clearing all entries : `clear`
 
-Clears all contractor entries from EstateContacts.
+Clears all contractor entries and maintenance tasks from EstateContacts.
 
 Format: `clear`
 
@@ -308,18 +335,19 @@ _Details coming soon ..._
 
 Action          | Format, Examples
 ----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**         | `addc n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SERVICE [t/TAG]…​` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 s/Plumbing t/friend t/colleague`
-**Clear**       | `clear confirm`
-**Delete**      | `delc INDEX`<br> e.g., `delc 3`
-**Edit**        | `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SERVICE] [t/TAG]…​`
-**Find**        | `findc n/KEYWORD [MORE_KEYWORDS]` or `findc s/KEYWORD [MORE_KEYWORDS]`<br> e.g., `findc n/James Jake`
-**List**        | `listc`
+**Add Contractor** | `addc n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SERVICE [t/TAG]…​` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 s/Plumbing t/friend t/colleague`
+**List Contractors** | `listc`
+**Edit Contractor** | `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SERVICE] [t/TAG]…` <br> e.g., `editc 1 p/91234567 e/johndoe@example.com`
+**Delete Contractor** | `delc INDEX`<br> e.g., `delc 3`
+**Find Contractor(s)** | `findc n/KEYWORD [MORE_KEYWORDS]` or `findc s/KEYWORD [MORE_KEYWORDS]`<br> e.g., `findc n/James Jake`
 **Add Task**    | `addt f/FACILITY d/DATE c/CONTRACTOR_INDEX`<br> e.g., `addt f/Sports Hall d/2026-12-01 c/2`
+**List Tasks**  | `listt`
+**Edit Task**  | `editt INDEX [f/FACILITY] [d/DATE)] [c/CONTRACTOR_INDEX]` <br> e.g., `editt 1 f/FunctionRoom d/2026-12-15`
 **Delete Task** | `delt INDEX`<br> e.g., `delt 1`
 **Done Task**   | `donet INDEX`<br> e.g., `donet 1`
-**List Tasks**  | `listt`
 **Sort Tasks**  | `sortt`
 **History**     | `history f/FACILITY_NAME`<br> e.g., `history f/Sports Hall`
 **Report**      | `report m/YEAR-MONTH`<br> e.g., `report m/2026-12`
-**Help**        | `help`
+**Clear**       | `clear confirm`
+**Help**        | `help or f1 keyboard shortcut`
 **Exit**        | `exit`
