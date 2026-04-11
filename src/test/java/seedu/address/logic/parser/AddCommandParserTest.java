@@ -70,6 +70,14 @@ public class AddCommandParserTest {
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + SERVICE_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonMultipleTags));
+
+        // service with spaces
+        String multiWordServiceDesc = " " + PREFIX_SERVICE + "Air Con";
+        Person expectedPersonMultiWordService = new PersonBuilder(BOB).withService("Air Con")
+                .withTags(VALID_TAG_FRIEND).build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + multiWordServiceDesc + TAG_DESC_FRIEND,
+                new AddCommand(expectedPersonMultiWordService));
     }
 
     @Test

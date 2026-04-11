@@ -84,10 +84,10 @@ Contractor field constraints:
 * `NAME`: Must contain only alphanumeric characters and spaces, and must not be blank.
 * `PHONE_NUMBER`: Must contain only digits, with length between 3 and 15 digits.
 * `EMAIL`: Must be in the format `local-part@domain`.
-* `EMAIL` local-part: Must use alphanumeric characters and `+_.-`, cannot start/end with a special character.
-* `EMAIL` domain: Domain labels are separated by `.`; each label must start/end alphanumeric, may contain internal hyphens, and final label must be at least 2 characters.
+  * `local-part`: Must use alphanumeric characters and `+_.-`, cannot start/end with a special character.
+  * `domain`: Domain labels are separated by `.`; each label must start/end alphanumeric, may contain internal hyphens, and final label must be at least 2 characters.
 * `ADDRESS`: Can contain any characters, but must not be blank.
-* `SERVICE`: Must be alphanumeric (no spaces/special characters).
+* `SERVICE`: Must contain alphanumeric words separated by single spaces (no special characters).
 * `TAG`: Must be alphanumeric (no spaces/special characters).
 
 <box type="tip" seamless>
@@ -98,6 +98,7 @@ Contractor field constraints:
 Examples:
 * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/Plumbing`
 * `addc n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 s/Electrical t/criminal`
+* `addc n/AirCool Pte Ltd p/91234567 e/contact@aircool.com a/10 Industrial Road s/Air Con Servicing t/24H`
 
 ### Listing all contractors : `listc`
 
@@ -113,7 +114,7 @@ Format: `findc n/KEYWORD [MORE_KEYWORDS] or findc s/KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only exact words will be matched e.g. `Han` will not match `Hans`
+* Only **exact** words will be matched e.g. `Han` will not match `Hans`
 * Contractors matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
