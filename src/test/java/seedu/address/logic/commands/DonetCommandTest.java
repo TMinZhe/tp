@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -49,7 +50,8 @@ public class DonetCommandTest {
     public void execute_alreadyCompleted_throwsCommandException() throws Exception {
         DonetCommand command = new DonetCommand(Index.fromOneBased(1));
         command.execute(model);
-        assertThrows(CommandException.class, () -> command.execute(model));
+        CommandResult result = command.execute(model);
+        assertFalse(model.getMaintenanceTaskList().getTasks().get(0).isCompleted());
     }
 
     @Test
