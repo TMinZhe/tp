@@ -36,7 +36,8 @@ public class ReportCommandParser implements Parser<ReportCommand> {
             return new ReportCommand(yearMonth);
         } catch (DateTimeParseException e) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReportCommand.MESSAGE_USAGE));
+                    "Invalid month: '" + monthStr + "'. Please enter a valid year and month in YYYY-MM format "
+                            + "(e.g. m/2026-12). Month must be between 01 and 12.");
         }
     }
 }
