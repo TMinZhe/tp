@@ -9,7 +9,6 @@
 EstateContacts is a **desktop address book app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EstateContacts can get your contact management tasks done faster than traditional GUI apps.
 
 ---
-Table of Contents
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -284,13 +283,14 @@ Examples:
 
 ---
 
-### Viewing help : `help or f1 keyboard shortcut`
+### Viewing help : `help or F1 keyboard shortcut`
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpCommand.png)
-
 Format: `help`
+
+<img src="images/helpCommand.png" width="400" height="511" />
+
 
 ### Clearing all entries : `clear confirm`
 
@@ -357,5 +357,5 @@ Action          | Format, Examples
 **History**     | `history f/FACILITY_NAME`<br> e.g., `history f/Sports Hall`
 **Report**      | `report m/YEAR-MONTH`<br> e.g., `report m/2026-12`
 **Clear**       | `clear confirm`
-**Help**        | `help or f1 keyboard shortcut`
+**Help**        | `help or F1 keyboard shortcut`
 **Exit**        | `exit`
