@@ -553,10 +553,13 @@ testers are expected to do more *exploratory* testing.
     1. Expected: Task reverted back to `[PENDING]`.
 
 1. **Deleting a task**
-    1. Test case: `delt 1` on a `[PENDING]` task
-    1. Expected: Task deleted successfully.
-    1. Test case: `delt 1` on a `[DONE]` task
+    1. Prerequisites: Run `listt` to view all tasks. Identify a `[PENDING]` task and a `[DONE]` task and note their indices.
+    1. Test case: `delt [INDEX]` where `[INDEX]` is the index of a `[PENDING]` task.
+    1. Expected: Task deleted successfully with details shown.
+    1. Test case: `delt [INDEX]` where `[INDEX]` is the index of a `[DONE]` task.
     1. Expected: Error saying completed tasks cannot be deleted.
+    1. Test case: `delt 0`
+    1. Expected: Error message shown. No task deleted.
 
 1. **View Facility Task**
     1. Test case: `history f/Sports Hall`
