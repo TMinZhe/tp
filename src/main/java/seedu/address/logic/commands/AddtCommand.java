@@ -33,7 +33,7 @@ public class AddtCommand extends Command {
             + PREFIX_CONTRACTOR_INDEX + "CONTRACTOR_INDEX\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_FACILITY + "Sports Hall "
-            + PREFIX_DATE + "2025-12-01 "
+            + PREFIX_DATE + "2026-12-01 "
             + PREFIX_CONTRACTOR_INDEX + "2";
 
     public static final String MESSAGE_SUCCESS = "Task added successfully: %1$s";
