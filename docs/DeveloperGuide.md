@@ -713,7 +713,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
     1. Download the JAR file and copy into an empty folder.
-    1. Open a terminal, navigate to the folder, and run `java -jar addressbook.jar`.
+    1. Open a terminal, navigate to the folder, and run `java -jar estatecontacts.jar`.
     1. Expected: GUI appears with sample data.
 
 1. Saving window preferences
