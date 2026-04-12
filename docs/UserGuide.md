@@ -182,11 +182,6 @@ Task field constraints:
 * `DATE`: Must be in `YYYY-MM-DD` format, must be a valid calendar date, and must not be in the past.
 * `CONTRACTOR_INDEX`: Must be a positive integer and must refer to an entry in the **currently displayed contractor list**.
 
-<box type="warning" seamless>
-
-**Caution:** Always run `listc` before using `addt` to ensure the contractor index refers to the full list. If you run `findc` first and then use `addt`, the index will be based on the filtered list which may assign the task to the wrong contractor.
-</box>
-
 <box type="tip" seamless>
 
 **Tip:** A task cannot be added if another task for the same facility on the same date already exists.
