@@ -24,7 +24,7 @@ EstateContacts is a **desktop address book app for managing contacts, optimized 
 
 1. Copy the file to the folder you want to use as the _home folder_ for EstateContacts.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar estatecontacts.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -322,13 +322,17 @@ EstateContacts data are saved in the hard disk automatically after any command t
 
 ### Editing the data file
 
-EstateContacts data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EstateContacts data are saved automatically as JSON files:
+* `[JAR file location]/data/addressbook.json` for contractors.
+* `[JAR file location]/data/tasklist.json` for maintenance tasks.
+
+Advanced users are welcome to update data directly by editing these data files.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, EstateContacts will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause EstateContacts to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to a data file make its format invalid, EstateContacts will discard all data and start with empty data files at the next run. Hence, it is recommended to take a backup of the files before editing them.<br>
+Furthermore, certain edits can cause EstateContacts to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data files only if you are confident that you can update them correctly.
 </box>
 
 
@@ -337,7 +341,19 @@ Furthermore, certain edits can cause EstateContacts to behave in unexpected ways
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EstateContacts home folder.
+**A**: Install the app in the other computer and overwrite the empty data files it creates (`addressbook.json` and `tasklist.json`) with the files from your previous EstateContacts home folder.
+
+**Q**: Which command should I use to launch the app?<br>
+**A**: Open a terminal in the folder containing the JAR file and run `java -jar estatecontacts.jar`.
+
+**Q**: Where are my data files stored?<br>
+**A**: They are stored in the app's home folder under `data/addressbook.json` and `data/tasklist.json`.
+
+**Q**: Can I edit the JSON data files manually?<br>
+**A**: Yes, but only if you are confident with the format. Invalid JSON or invalid field values may cause EstateContacts to reset data at the next launch.
+
+**Q**: Why can't I delete some tasks using `delt`?<br>
+**A**: Completed tasks (`[DONE]`) cannot be deleted. Toggle the task back to pending using `donet INDEX`, then run `delt INDEX`.
 
 --------------------------------------------------------------------------------------------------------------------
 
