@@ -89,6 +89,17 @@ Contractor field constraints:
 * `SERVICE`: Must contain alphanumeric words separated by single spaces (no special characters).
 * `TAG`: Must be alphanumeric (no spaces/special characters).
 
+<box type="warning" seamless>
+
+**Duplicate contractor rule:** A contractor is treated as a duplicate if at least one of the following matches an existing contractor:
+* Exact `NAME` match (character-for-character).
+* Exact `PHONE_NUMBER` match.
+* Exact `EMAIL` match.
+
+**Limitation:** `NAME` matching is case-sensitive and spacing-sensitive. For example, `John Doe`, `john doe`, and `John  Doe` are treated as different names.
+
+</box>
+
 <box type="tip" seamless>
 
 **Tip:** A contractor can have any number of tags (including 0).
@@ -141,6 +152,7 @@ Format: `delc INDEX`
 <box type="warning" seamless>
 
 **Caution:** Deleting a contractor will **not** delete their associated maintenance tasks. Any tasks previously assigned to the deleted contractor will still appear in the task list with the contractor's details preserved at the time the task was created. It is recommended to delete associated pending tasks via `delt` before deleting a contractor.
+* After `delc INDEX`, contractors below that index shift up by 1. Example: deleting index 2 makes old index 3 become new index 2.
 
 
 </box>
@@ -163,6 +175,7 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SERVICE] [t/TAG
 
 **Caution:** 
 * Inputting `t/` will clear all exisiting tags of the contractor.
+* The duplicate contractor rule from `addc` also applies to edits. You cannot edit a contractor to a `NAME`, `PHONE_NUMBER`, or `EMAIL` that duplicates another existing contractor.
 
 Example:
 * `editc 1 p/91234567 e/johndoe@example.com`

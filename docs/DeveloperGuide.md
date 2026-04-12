@@ -369,6 +369,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User provides the contractor's name, phone number, email, and address.
 4. EstateContacts adds the contact to the system.
 
+**Current duplicate contractor rule**
+* A contractor is considered a duplicate if any one of these matches an existing contractor exactly: `NAME`, `PHONE_NUMBER`, or `EMAIL`.
+* `NAME` matching is case-sensitive and spacing-sensitive.
+* `ADDRESS`, `SERVICE`, and `TAG` are not used for duplicate detection.
+
    Use case ends.
 
 **Extensions**
@@ -376,6 +381,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The provided contact details are invalid.
 
     * 3a1. EstateContacts shows an error message.
+
+  Use case resumes at step 2.
+
+* 3b. The provided contact is a duplicate based on the duplicate contractor rule.
+
+    * 3b1. EstateContacts shows a duplicate contractor error.
 
   Use case resumes at step 2.
 
@@ -584,3 +595,14 @@ testers are expected to do more *exploratory* testing.
     1. Open `data/addressbook.json` and add invalid text.
     1. Restart the app.
     1. Expected: App starts with an empty data file.
+
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Normalize internal whitespace for contractor-name duplicate checks**
+   Current behavior treats `John Doe` and `John  Doe` as different names. We plan to normalize consecutive spaces to a single space before duplicate detection so these are treated as the same contractor.
+2. **Use case-insensitive contractor-name duplicate checks**
+   Current behavior treats `John Doe`, `john doe`, and `JOHN DOE` as different names. We plan to compare contractor names case-insensitively during duplicate detection.
+3. **Allow same-name contractors when other identity fields differ**
+   Current behavior blocks adding a second contractor when the exact same name already exists, even if phone/email are different. We plan to revise contractor identity so valid same-name contractors can coexist when their contact details differ.
