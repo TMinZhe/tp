@@ -140,7 +140,7 @@ Format: `delc INDEX`
 
 <box type="warning" seamless>
 
-**Caution:** Deleting a contractor will **not** delete their associated maintenance tasks. Any tasks previously assigned to the deleted contractor will still appear in the task list, but the contractor will be shown as `Unknown (deleted)`. It is recommended to delete associated tasks via `delt` before deleting a contractor.
+**Caution:** Deleting a contractor will **not** delete their associated maintenance tasks. Any tasks previously assigned to the deleted contractor will still appear in the task list with the contractor's details preserved at the time the task was created. It is recommended to delete associated pending tasks via `delt` before deleting a contractor.
 
 
 </box>

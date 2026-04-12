@@ -380,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case resumes at step 2.
 
 
--**Use case: List maintenance tasks**
+-**Use case: UC02 - List maintenance tasks**
 
 **MSS**
 
@@ -397,6 +397,81 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. EstateContacts informs the user that no tasks exist.
 
   Use case ends.
+
+**Use case: UC03 - Add a maintenance task**
+
+**MSS**
+
+1. User runs `listc` to view all contractors and their indices.
+2. User requests to add a maintenance task with a facility, date and contractor index.
+3. EstateContacts validates the details.
+4. EstateContacts adds the task and displays a success message showing the contractor name, service and tags.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The contractor index is invalid.
+    * 3a1. EstateContacts shows an invalid contractor index error.
+    * Use case resumes at step 2.
+
+* 3b. A task for the same facility on the same date already exists.
+    * 3b1. EstateContacts shows a duplicate task error.
+    * Use case resumes at step 2.
+
+* 3c. The date is in the past.
+    * 3c1. EstateContacts shows an invalid date error.
+    * Use case resumes at step 2.
+
+---
+
+**Use case: UC04 - Mark a task as complete and generate a report**
+
+**MSS**
+
+1. User runs `listt` to view all tasks.
+2. User runs `donet INDEX` to mark a task as completed.
+3. EstateContacts marks the task as `[DONE]`.
+4. User runs `report m/YEAR-MONTH` to generate a monthly report.
+5. EstateContacts displays all completed tasks for that month grouped by contractor.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The task index is invalid.
+    * 2a1. EstateContacts shows an invalid index error.
+    * Use case resumes at step 2.
+
+* 2b. The task is already marked as complete.
+    * 2b1. EstateContacts reverts the task back to `[PENDING]`.
+    * Use case ends.
+
+* 4a. No completed tasks found for that month.
+    * 4a1. EstateContacts shows a no completed tasks message.
+    * Use case ends.
+
+---
+
+**Use case: UC05 - Delete a maintenance task**
+
+**MSS**
+
+1. User runs `listt` to view all tasks.
+2. User requests to delete a task at a specific index.
+3. EstateContacts deletes the task and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The task index is invalid.
+    * 2a1. EstateContacts shows an invalid index error.
+    * Use case resumes at step 2.
+
+* 2b. The task is already marked as complete.
+    * 2b1. EstateContacts shows an error saying completed tasks cannot be deleted.
+    * Use case ends.
 
 
 ### Non-Functional Requirements
@@ -453,7 +528,7 @@ testers are expected to do more *exploratory* testing.
 1. **Deleting a contractor**
     1. Prerequisites: Run `listc` to see all contractors.
     1. Test case: `delc 1`
-    1. Expected: First contractor deleted. Associated tasks show `Unknown (deleted)`.
+    1. Expected: First contractor deleted. Associated tasks preserve the contractor's details at the time of task creation.
     1. Test case: `delc 0`
     1. Expected: Error message shown. No contractor deleted.
 
@@ -475,7 +550,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `donet 1`
     1. Expected: Task marked as `[DONE]`.
     1. Test case: `donet 1` again
-    1. Expected: Error saying task already completed.
+    1. Expected: Task reverted back to `[PENDING]`.
 
 1. **Deleting a task**
     1. Test case: `delt 1` on a `[PENDING]` task
