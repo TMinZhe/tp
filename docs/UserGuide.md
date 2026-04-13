@@ -303,7 +303,7 @@ Format: `help`
 
 ### Clearing all entries : `clear confirm`
 
-Clears all contractor entries and maintenance tasks from EstateContacts.
+Permanently clears all contractor entries and maintenance tasks from EstateContacts.
 
 Format: `clear confirm`
 
