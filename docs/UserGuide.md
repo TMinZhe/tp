@@ -402,6 +402,9 @@ Furthermore, certain edits can cause EstateContacts to behave in unexpected ways
 **Q**: Why can't I delete some tasks using `delt`?<br>
 **A**: Completed tasks (`[DONE]`) cannot be deleted. Toggle the task back to pending using `donet INDEX`, then run `delt INDEX`.
 
+**Q**: Why can't I edit some tasks using `editt`?<br>
+**A**: Completed tasks (`[DONE]`) cannot be edited. Toggle the task back to pending using `donet INDEX`, then run `editt INDEX`.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
