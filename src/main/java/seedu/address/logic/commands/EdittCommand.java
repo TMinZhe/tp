@@ -41,8 +41,10 @@ public class EdittCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "A task for this facility on the same date already exists.";
     public static final String MESSAGE_INVALID_CONTRACTOR_INDEX = "The contractor index provided is invalid.";
-    public static final String MESSAGE_CANNOT_EDIT_COMPLETED_TASK =
-        "Cannot edit a completed task. Completed tasks are kept for reporting.";
+    public static final String MESSAGE_CANNOT_EDIT_COMPLETED_TASK = "Cannot edit a completed task.\n"
+            + "Completed tasks are kept for reporting.";
+    public static final String MESSAGE_WARNING_PAST_DATE = "\nWarning: The date provided is in the past."
+            + " This task has been recorded retroactively.";
 
     private final Index targetIndex;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -114,7 +116,13 @@ public class EdittCommand extends Command {
                 + " | Service: " + editedTask.getContractorService()
                 + " | Tags: [" + tagsString + "])";
 
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskDisplay));
+        String resultMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, taskDisplay);
+
+        if (editedTask.getDate().isBefore(LocalDate.now())) {
+            resultMessage += MESSAGE_WARNING_PAST_DATE;
+        }
+
+        return new CommandResult(resultMessage);
     }
 
     /**
