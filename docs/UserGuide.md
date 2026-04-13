@@ -218,7 +218,6 @@ Format: `addt f/FACILITY d/DATE c/CONTRACTOR_INDEX`
 
 </box>
 
-
 <box type="tip" seamless>
 
 **Tip:** You are allowed to add tasks with dates in the past (e.g. to retroactively log completed maintenance work). The task will be added successfully, but a warning message will be shown indicating that the task is scheduled in the past.
@@ -261,8 +260,11 @@ Format: `editt INDEX [f/FACILITY] [d/DATE] [c/CONTRACTOR_INDEX]`
 
 </box>
 
-**Tip:** You are allowed to edit tasks to dates in the past (e.g., to retroactively fix logs for completed maintenance work).
+<box type="tip" seamless>
 
+**Tip:** You are allowed to edit tasks to dates in the past (e.g., to retroactively fix logs for completed maintenance work).
+</box>
+  
 Examples:
 * `editt 1 f/Function Room d/2026-12-15`
 
@@ -450,7 +452,7 @@ Action          | Format, Examples
 **Find Contractor(s)** | `findc n/KEYWORD [MORE_KEYWORDS]` or `findc s/KEYWORD [MORE_KEYWORDS]`<br> e.g., `findc n/James Jake`
 **Add Task**    | `addt f/FACILITY d/DATE c/CONTRACTOR_INDEX`<br> e.g., `addt f/Sports Hall d/2026-12-01 c/2`
 **List Tasks**  | `listt`
-**Edit Task**  | `editt INDEX [f/FACILITY] [d/DATE] [c/CONTRACTOR_INDEX]` <br> e.g., `editt 1 f/FunctionRoom d/2026-12-15`
+**Edit Task**  | `editt INDEX [f/FACILITY] [d/DATE] [c/CONTRACTOR_INDEX]` <br> e.g., `editt 1 f/Function Room d/2026-12-15`
 **Delete Task** | `delt INDEX`<br> e.g., `delt 1`
 **Done Task**   | `donet INDEX`<br> e.g., `donet 1`
 **Sort Tasks**  | `sortt`
