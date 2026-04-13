@@ -342,6 +342,12 @@ Permanently clears all contractor entries and pending maintenance tasks from Est
 
 Format: `clear confirm`
 
+<box type="warning" seamless>
+
+**Caution:** This action is irreversible. All contractors and pending tasks will be permanently deleted. Typing `clear` without the `confirm` keyword will display a warning prompt instead of clearing any data — you must type `clear confirm` in full to proceed.
+
+</box>
+
 ### Exiting the program : `exit`
 
 Exits the program.
