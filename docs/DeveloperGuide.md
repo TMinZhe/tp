@@ -255,11 +255,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user    | delete a maintenance task             | remove tasks that are no longer required            |
 | `* * *`  | user    | view a list of maintenance tasks      | view all ongoing maintenance issues in the estate   |
 | `* * *`  | user    | mark a maintenance task as complete   | track which tasks have been finished                |
+| `* * *`  | user    | unmark a completed maintenance task   | unmark tasks so that they can be deleted            |
 | `* * *`  | user    | generate a monthly maintenance report | review completed work for the month                 |
 | `* *`    | user    | sort maintenance tasks by date        | see upcoming tasks in chronological order           |
-| `* *`    | user    | tag contractors by service type       | organise contacts by specialty                      |
+| `* *`    | user    | tag contractors by service type       | organise contacts by services provided              |
 | `* *`    | user    | edit contractor details               | keep contact information up to date                 |
-| `* *`    | user    | edit maintenance task details               | keep task up to date                 |
+| `* *`    | user    | edit maintenance task details         | keep task up to date                                |
 
 
 

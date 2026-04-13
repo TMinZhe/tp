@@ -31,9 +31,9 @@ public class HelpWindow extends UiPart<Stage> {
             - delc INDEX
 
             Task commands:
-            - addt f/FACILITY d/YYYY-MM-DD c/CONTRACTOR_INDEX
+            - addt f/FACILITY d/DATE c/CONTRACTOR_INDEX
             - listt
-            - editt INDEX [f/FACILITY] [d/YYYY-MM-DD] [c/CONTRACTOR_INDEX]
+            - editt INDEX [f/FACILITY] [d/DATE] [c/CONTRACTOR_INDEX]
             - delt INDEX
             - donet INDEX
             - sortt
