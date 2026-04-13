@@ -811,3 +811,11 @@ Team size: 5
    Current behavior treats `John Doe`, `john doe`, and `JOHN DOE` as different names. We plan to compare contractor names case-insensitively during duplicate detection.
 3. **Allow same-name contractors when other identity fields differ**
    Current behavior blocks adding a second contractor when the exact same name already exists, even if phone/email are different. We plan to revise contractor identity so valid same-name contractors can coexist when their contact details differ.
+4. **Support read-only file access for listing operations**
+   Current behavior throws an error if the data files lack write permissions, preventing users from listing contractors and tasks. We plan to allow listing operations to proceed when the application only has read access to files, since viewing data does not require writing to disk. Error messages will only appear when write operations are attempted.
+5. **Expand character support in contractor name field**
+   Current behavior only accepts alphanumeric characters and spaces for contractor name. We plan to support additional symbols such as periods (`.`) and hyphens (`-`) to accommodate names with common punctuation like "Mary-Jane" or "Dr. Smith".
+6. **Enable text selection and copying in result window**
+   Current behavior does not allow users to copy text displayed in the main result window. We plan to implement text selection and copying functionality to improve usability when users need to reference or share command output.
+7. **Add findt command to filter maintenance tasks**
+   Currently, there is no direct way to filter maintenance tasks by specific criteria. We plan to add a `findt` command that allows users to search and filter maintenance tasks by facility name, contractor, status, or date range, similar to the existing `findc` command for contractors.
