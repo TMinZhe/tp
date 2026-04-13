@@ -424,7 +424,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. EstateContacts displays contractor contacts with indices.
 3. User requests to delete a contractor using an index.
 4. EstateContacts deletes the selected contractor contact.
-5. EstateContacts updates related maintenance tasks to show contractor as deleted.
+5. EstateContacts preserves the contractor's details in related maintenance tasks.
 
    Use case ends.
 
