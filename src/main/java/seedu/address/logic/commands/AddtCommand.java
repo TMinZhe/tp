@@ -37,6 +37,8 @@ public class AddtCommand extends Command {
             + PREFIX_CONTRACTOR_INDEX + "2";
 
     public static final String MESSAGE_SUCCESS = "Task added successfully: %1$s";
+    public static final String MESSAGE_WARNING_PAST_DATE = "\nWarning: The date provided is in the past."
+            + " This task has been recorded retroactively.";
     public static final String MESSAGE_DUPLICATE_TASK = "A task for this facility on the same date already exists.";
     public static final String MESSAGE_INVALID_CONTRACTOR_INDEX = "The contractor index provided is invalid.";
 
@@ -48,7 +50,7 @@ public class AddtCommand extends Command {
      * Creates an {@code AddtCommand} to add a task with the given parameters.
      *
      * @param facility        The facility name (1–50 chars).
-     * @param date            The scheduled date (not in the past).
+     * @param date            The scheduled date.
      * @param contractorIndex The 1-based index of the contractor to assign.
      */
     public AddtCommand(String facility, LocalDate date, Index contractorIndex) {
@@ -67,7 +69,7 @@ public class AddtCommand extends Command {
         validateContractorExists(model);
         validateNoDuplicate(model);
 
-        Person contractor = model.getAddressBook().getPersonList().get(contractorIndex.getZeroBased());
+        Person contractor = model.getFilteredPersonList().get(contractorIndex.getZeroBased());
         Set<Tag> contractorTags = contractor.getTags();
         Service contractorService = contractor.getService();
 
@@ -82,7 +84,13 @@ public class AddtCommand extends Command {
                 + " (Contractor: " + contractor.getName().fullName
                 + " | Service: " + contractorService
                 + " | Tags: [" + tagsString + "])";
-        return new CommandResult(String.format(MESSAGE_SUCCESS, taskDisplay));
+
+        String finalMessage = String.format(MESSAGE_SUCCESS, taskDisplay);
+        if (date.isBefore(LocalDate.now())) {
+            finalMessage += MESSAGE_WARNING_PAST_DATE;
+        }
+
+        return new CommandResult(finalMessage);
     }
 
     /**
@@ -93,7 +101,7 @@ public class AddtCommand extends Command {
      * @throws CommandException If the index is out of bounds.
      */
     private void validateContractorExists(Model model) throws CommandException {
-        int listSize = model.getAddressBook().getPersonList().size();
+        int listSize = model.getFilteredPersonList().size();
         if (contractorIndex.getZeroBased() >= listSize) {
             throw new CommandException(MESSAGE_INVALID_CONTRACTOR_INDEX);
         }

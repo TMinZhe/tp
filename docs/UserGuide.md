@@ -212,6 +212,7 @@ Format: `addt f/FACILITY d/DATE c/CONTRACTOR_INDEX`
 
 </box>
 
+
 <box type="tip" seamless>
 
 **Tip:** You are allowed to add tasks with dates in the past (e.g. to retroactively log completed maintenance work). The task will be added successfully, but a warning message will be shown indicating that the task is scheduled in the past.
