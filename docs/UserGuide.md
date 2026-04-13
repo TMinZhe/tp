@@ -237,7 +237,7 @@ Format: `editt INDEX [f/FACILITY] [d/DATE] [c/CONTRACTOR_INDEX]`
 * `INDEX`: Must be a positive integer (1, 2, 3, …​) referring to the index shown in the displayed maintenance task list.
 * At least one optional field must be provided.
 * `FACILITY`: Must be between 1 and 50 characters (after trimming leading/trailing spaces).
-* `DATE`: Must be in `YYYY-MM-DD` format, must be a valid calendar date, and **must not be a date in the past**.
+* `DATE`: Must be in `YYYY-MM-DD` format, must be a valid calendar date.
 * `CONTRACTOR_INDEX`: Must be a positive integer referring to the index shown in the **currently displayed contractor list**.
 
 <box type="warning" seamless>
@@ -250,7 +250,7 @@ Format: `editt INDEX [f/FACILITY] [d/DATE] [c/CONTRACTOR_INDEX]`
 
 </box>
 
-**Tip 2 :** You are allowed to edit tasks to dates in the past (e.g., to retroactively fix logs for completed maintenance work).
+**Tip 1:** You are allowed to edit tasks to dates in the past (e.g., to retroactively fix logs for completed maintenance work).
 
 Examples:
 * `editt 1 f/Function Room d/2026-12-15`
@@ -425,7 +425,7 @@ Action          | Format, Examples
 **Find Contractor(s)** | `findc n/KEYWORD [MORE_KEYWORDS]` or `findc s/KEYWORD [MORE_KEYWORDS]`<br> e.g., `findc n/James Jake`
 **Add Task**    | `addt f/FACILITY d/DATE c/CONTRACTOR_INDEX`<br> e.g., `addt f/Sports Hall d/2026-12-01 c/2`
 **List Tasks**  | `listt`
-**Edit Task**  | `editt INDEX [f/FACILITY] [d/DATE] [c/CONTRACTOR_INDEX]` <br> e.g., `editt 1 f/FunctionRoom d/2026-12-15`
+**Edit Task**  | `editt INDEX [f/FACILITY] [d/DATE] [c/CONTRACTOR_INDEX]` <br> e.g., `editt 1 f/Function Room d/2026-12-15`
 **Delete Task** | `delt INDEX`<br> e.g., `delt 1`
 **Done Task**   | `donet INDEX`<br> e.g., `donet 1`
 **Sort Tasks**  | `sortt`
