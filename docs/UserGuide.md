@@ -129,8 +129,9 @@ Format: `findc n/KEYWORD [MORE_KEYWORDS] or findc s/KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 **Caution:**
-* `findc` returns the filtered list, so it will affect other commands that uses contractor index.
-* If you used `findc` as the most recent command, use `findc` contractor index instead of `listc` contractor index.
+* `findc` filters the contractor list, so contractor indices will change based on the current displayed list.
+* Always use the index shown in the **currently displayed list** when running `addt`, `delc`, or `editc`.
+* For example, if `listc` shows Rachel Ng at index 5, but `findc n/Rachel` shows her at index 1, use `c/1` to refer to her after `findc`.
 
 
 Examples:
