@@ -1,71 +1,84 @@
 @startuml
-!include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR_T4
-skinparam classBackgroundColor LOGIC_COLOR
+skinparam arrowColor #101086
+skinparam classBackgroundColor #3333C4
+
+!define UI_COLOR #1D8900
+!define UI_COLOR_T1 #83E769
+!define UI_COLOR_T2 #3FC71B
+!define UI_COLOR_T3 #166800
+!define UI_COLOR_T4 #0E4100
+
+!define LOGIC_COLOR #3333C4
+!define LOGIC_COLOR_T1 #C8C8FA
+!define LOGIC_COLOR_T2 #6A6ADC
+!define LOGIC_COLOR_T3 #1616B0
+!define LOGIC_COLOR_T4 #101086
+
+!define MODEL_COLOR #9D0012
+!define MODEL_COLOR_T1 #F97181
+!define MODEL_COLOR_T2 #E41F36
+!define MODEL_COLOR_T3 #7B000E
+!define MODEL_COLOR_T4 #51000A
+
+!define STORAGE_COLOR #A38300
+!define STORAGE_COLOR_T1 #FFE374
+!define STORAGE_COLOR_T2 #EDC520
+!define STORAGE_COLOR_T3 #806600
+!define STORAGE_COLOR_T4 #544400
+
+skinparam Class {
+    FontColor #FFFFFF
+    FontSize 15
+    BorderColor #FFFFFF
+}
+
+skinparam Participant {
+    FontColor #FFFFFF
+    Padding 20
+}
+
+hide footbox
+hide members
+hide circle
 
 Class "{abstract}\nCommand" as Command
 Class XYZCommand
 
-package "Parser classes"{
-Class "<<interface>>\nParser" as Parser
-Class AddressBookParser
-Class AddtCommandParser
-Class DeltCommandParser
-Class DonetCommandParser
-Class ReportCommandParser
-Class CliSyntax
-Class ParserUtil
-Class ArgumentMultimap
-Class ArgumentTokenizer
-Class Prefix
+package "Parser classes" {
+    Class "<<interface>>\nParser" as Parser
+    Class AddressBookParser
+    Class XYZCommandParser
+    Class CliSyntax
+    Class ParserUtil
+    Class ArgumentMultimap
+    Class ArgumentTokenizer
+    Class Prefix
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> AddressBookParser
 
-AddressBookParser .down.> AddtCommandParser: <<create>>
-AddressBookParser .down.> DeltCommandParser: <<create>>
-AddressBookParser .down.> DonetCommandParser: <<create>>
-AddressBookParser .down.> ReportCommandParser: <<create>>
-
-AddtCommandParser ..> XYZCommand : <<create>>
-DeltCommandParser ..> XYZCommand : <<create>>
-DonetCommandParser ..> XYZCommand : <<create>>
-ReportCommandParser ..> XYZCommand : <<create>>
-
+AddressBookParser .down.> XYZCommandParser : <<create>>
+XYZCommandParser ..> XYZCommand : <<create>>
 AddressBookParser ..> Command : <<use>>
 
-AddtCommandParser .up.|> Parser
-DeltCommandParser .up.|> Parser
-DonetCommandParser .up.|> Parser
-ReportCommandParser .up.|> Parser
-
-AddtCommandParser ..> ArgumentMultimap
-DeltCommandParser ..> ArgumentMultimap
-DonetCommandParser ..> ArgumentMultimap
-ReportCommandParser ..> ArgumentMultimap
-
-AddtCommandParser ..> ArgumentTokenizer
-DeltCommandParser ..> ArgumentTokenizer
-DonetCommandParser ..> ArgumentTokenizer
-ReportCommandParser ..> ArgumentTokenizer
-
+XYZCommandParser .up.|> Parser
+XYZCommandParser ..> ArgumentMultimap
+XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
-
-AddtCommandParser ..> CliSyntax
-DeltCommandParser ..> CliSyntax
-DonetCommandParser ..> CliSyntax
-ReportCommandParser ..> CliSyntax
-
+XYZCommandParser ..> CliSyntax
 CliSyntax ..> Prefix
-
-AddtCommandParser ..> ParserUtil
-DeltCommandParser ..> ParserUtil
-DonetCommandParser ..> ParserUtil
-ReportCommandParser ..> ParserUtil
-
+XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
+
+note right of XYZCommandParser
+  XYZCommandParser represents
+  AddtCommandParser,
+  DeltCommandParser,
+  DonetCommandParser,
+  ReportCommandParser, etc.
+end note
 @enduml
