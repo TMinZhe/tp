@@ -260,12 +260,17 @@ Deletes the specified task from EstateContacts.
 
 Format: `delt INDEX`
 
-* Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in the displayed maintenance task list.
-* Completed tasks (marked via `donet`) **cannot** be deleted, as they are kept for monthly reporting purposes.
+**Field constraints:**
+* `INDEX`: Must be a positive integer (1, 2, 3, …​) referring to the index shown in the displayed maintenance task list.
+
+<box type="warning" seamless>
+
+**Caution:** Completed tasks (marked via `donet`) **cannot** be deleted, as they are preserved for monthly reporting purposes. To delete a completed task, first toggle it back to pending using `donet INDEX`, then run `delt INDEX`.
+
+</box>
 
 Examples:
-* delt 1
+* `delt 1`
 
 ### Sorting tasks by date : `sortt`
 
