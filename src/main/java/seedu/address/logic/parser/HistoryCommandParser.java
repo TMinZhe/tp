@@ -23,6 +23,9 @@ public class HistoryCommandParser implements Parser<HistoryCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HistoryCommand.MESSAGE_USAGE));
         }
         String facilityName = argMultimap.getValue(PREFIX_FACILITY).get();
+        if (facilityName.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HistoryCommand.MESSAGE_USAGE));
+        }
         return new HistoryCommand(facilityName);
     }
 }

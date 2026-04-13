@@ -269,8 +269,7 @@ Format: `editt INDEX [f/FACILITY] [d/DATE] [c/CONTRACTOR_INDEX]`
 **Caution:**
 * Completed tasks (marked via `donet`) **cannot** be edited. Toggle the task back to pending using `donet INDEX` before editing.
 * A task cannot be edited to have the same facility and date as another existing task.
-* Unlike `addt`, past dates are **not** allowed when editing a task's date.
-* Changing the contractor (`c/CONTRACTOR_INDEX`) will update the task's stored contractor name, service, and tags to match the new contractor at the time of the edit. If that contractor is later modified or deleted, the task retains the snapshot taken at edit time.
+* Changing the contractor (`c/CONTRACTOR_INDEX`) will update the task's stored contractor name, service, and tags to match the new contractor at the time of the edit. If that contractor is later deleted, the task retains the snapshot taken at edit time.
 
 </box>
 
