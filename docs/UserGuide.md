@@ -96,7 +96,6 @@ Contractor field constraints:
 * Exact `PHONE_NUMBER` match.
 * Exact `EMAIL` match.
 
-**Limitation:** `NAME` matching is case-sensitive and spacing-sensitive. For example, `John Doe`, `john doe`, and `John  Doe` are treated as different names.
 
 </box>
 
