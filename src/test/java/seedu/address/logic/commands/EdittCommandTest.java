@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,6 +59,32 @@ public class EdittCommandTest {
 
         Name expectedName = model.getFilteredPersonList().get(1).getName();
         assertEquals(expectedName, model.getMaintenanceTaskList().getTasks().get(0).getContractorName());
+    }
+
+    @Test
+    public void execute_editDateToPast_successWithWarning() throws Exception {
+        EditTaskDescriptor descriptor = new EditTaskDescriptor();
+        LocalDate pastDate = LocalDate.now().minusDays(5);
+        descriptor.setDate(pastDate);
+        EdittCommand command = new EdittCommand(Index.fromOneBased(1), descriptor);
+
+        CommandResult result = command.execute(model);
+
+        assertEquals(pastDate, model.getMaintenanceTaskList().getTasks().get(0).getDate());
+
+        MaintenanceTask editedTask = model.getMaintenanceTaskList().getTasks().get(0);
+        String tagsString = editedTask.getTags().stream()
+                .map(tag -> tag.tagName)
+                .collect(Collectors.joining(", "));
+        String taskDisplay = editedTask.getFacility() + " on " + editedTask.getDate()
+                + " (Contractor: " + editedTask.getContractorName().fullName
+                + " | Service: " + editedTask.getContractorService()
+                + " | Tags: [" + tagsString + "])";
+
+        String expectedMessage = String.format(EdittCommand.MESSAGE_EDIT_TASK_SUCCESS, taskDisplay)
+                + EdittCommand.MESSAGE_WARNING_PAST_DATE;
+
+        assertEquals(expectedMessage, result.getFeedbackToUser());
     }
 
     @Test
